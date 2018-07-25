@@ -4,11 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
 
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap-grid.min.css">
   <link rel="stylesheet" href="lib/reset/reset.min.css">
 
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/media.css">
+  <!-- _header.css -->
+  <link rel="stylesheet" href="css/_header.css">
+
   <link rel="shortcut icon" type="image/x-icon" href="img/me.jpg">
 
   <title>Даня Шишкин - Веб разработчик</title>
@@ -293,63 +294,20 @@
   </div>
   <!-- /#contacts -->
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+  <!-- Load styles -->
   <script>
-    function scrollTo(selector) {
-      $('html, body').animate({
-        scrollTop: $(selector).offset().top
-      }, 1000);
-      $('.m-menu').removeClass('active');
-    }
-
-    $('.nav li a').click(function(event) {
-      event.preventDefault();
-      $('.modal').removeClass('active');
-      $('.menu-btn').removeClass('active');
-      scrollTo($(this).attr('href'));
-    });
-
-    $('.menu-btn').click(function(e) {
-      e.preventDefault();
-      $(this).toggleClass('active');
-      $('.modal').toggleClass('active');
-    });
-
-    $('.cta-btn').click(function(e) {
-      e.preventDefault();
-      scrollTo($(this).attr('href'));
-    });
-
-    $('.thumb').hover(function() {
-      $(this).children('.overlay').addClass('active');
-    }, function() {
-      $(this).children('.overlay').removeClass('active');
-    });
-
-    // Filters
-    $('.filters a').click(function(event) {
-      event.preventDefault();
-
-      $(this).parent('li')
-        .addClass('active')
-        .siblings('li').removeClass('active');
-
-      // Some action here...
-      var category = $(this).attr('href');
-      if (category == 0) {
-        $('.grid .thumb').show();
-      }
-      else {
-        $('.grid .thumb').each(function(i, el) {
-          if ($(el).hasClass('category-'+category)) {
-            $(el).show();
-          }
-          else {
-            $(el).hide();
-          }
-        });
-      }
+    [
+      'css/style.css',
+      'css/media.css'
+    ].forEach(function(href) {
+      var css = document.createElement('link');
+      css.rel = 'stylesheet';
+      css.href = href;
+      document.head.appendChild(css);
     });
   </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
